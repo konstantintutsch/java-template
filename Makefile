@@ -10,3 +10,6 @@ $(BUILDDIR):
 $(BUILDDIR)/$(EXECUTABLE): $(BUILDDIR)
 	javac -d $(BUILDDIR) $(SOURCES)
 	jar cfe $(BUILDDIR)/$(EXECUTABLE) Main $(JARCLS)
+
+clean:
+	rm -r $(BUILDDIR)
