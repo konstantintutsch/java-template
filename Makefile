@@ -37,16 +37,16 @@ JV := java
 $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
 
-$(BUILDDIR)/$(EXECUTABLE): $(BUILDDIR)
+$(BUILDDIR)/$(EXECUTABLE): $(BUILDDIR) $(SOURCES)
 	$(JC) $(JCFLAGS) $(SOURCES)
-	$(JR) cfe $(BUILDDIR)/$(EXECUTABLE) $(PACKAGE).Main -C $(BUILDDIR) $(NAMESPACE)
+	$(JR) cfe $@ $(PACKAGE).Main -C $(BUILDDIR) $(NAMESPACE)
 
 #
 # Utilities
 #
 
 run: $(BUILDDIR)/$(EXECUTABLE)
-	$(JV) -jar $(BUILDDIR)/$(EXECUTABLE)
+	$(JV) -jar $^
 
-clean:
-	rm -r $(BUILDDIR)
+clean: $(BUILDDIR)
+	rm -r $^
