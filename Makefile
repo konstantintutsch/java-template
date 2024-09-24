@@ -28,7 +28,7 @@ JV := java
 # Targets not producing output files
 #
 
-.PHONY: clean run
+.PHONY: doc clean run
 
 #
 # Build
@@ -44,6 +44,9 @@ $(BUILDDIR)/$(EXECUTABLE): $(BUILDDIR) $(SOURCES)
 #
 # Utilities
 #
+
+doc: $(BUILDDIR) $(SOURCES)
+	LANG=en_US javadoc -d $(BUILDDIR)/doc $(SOURCES)
 
 run: $(BUILDDIR)/$(EXECUTABLE)
 	$(JV) -jar $^
